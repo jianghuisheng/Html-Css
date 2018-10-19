@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时钟</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            background-image: radial-gradient(circle, #e3e3e3 30%, #545454 60%);
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            width: 400px;
+            height: 400px;
+            background: #00CC33;
+            border-radius: 50px;
+            background: linear-gradient( #ffffff, #d8f8ff);
+            position: relative;
+            box-shadow: 0 -5px 2px 4px #c2c6cf inset;
+            /*box-shadow: 0 -5px 2px 4px #c2c6cf;*/
+        }
+        .clock{
+            width: 240px;
+            height: 240px;
+            text-align: center;
+            position: absolute;
+            top: calc(50% - 120px);
+            left: calc(50% - 120px);
+            border-radius: 50%;
+            background: linear-gradient( #ffffff, #d8f3ff);
+            box-shadow: 4px 10px 20px 0 #c2c6cf;
+        }
+
+        .clock i{
+            width: 24px;
+            height: 24px;
+            font-style: normal;
+            color: #898989;
+            font-size: 20px;
+            position: absolute;
+            overflow: hidden;
+            text-shadow: -1px -1px white, 1px 1px #574545;
+        }
+        .num1{
+            right: 20px;
+            top: calc(50% - 12px);
+        }
+        .num2{
+            bottom: 20px;
+            left: calc(50% - 12px);
+        }
+        .num3{
+            left: 20px;
+            top: calc(50% - 12px);
+        }
+        .num4{
+            top: 20px;
+            left: calc(50% - 12px);
+        }
+
+        /*时分秒针*/
+        .clock > div{
+            /*background-color: #545454;*/
+            position: absolute;
+        }
+        .clock  div span{
+            width: 100%;
+            display: block;
+            background-color: #0dc1fd;
+            border-radius: 4px;
+            box-shadow: 0 0 10px 0 #00bffd;
+        }
+        .hour{
+            width: 8px;
+            height: 120px;
+            top: calc(50% - 60px);
+            left: calc(50% - 4px);
+
+            /*animation: zhuan 43200s linear infinite ;*/
+        }
+        .hour span{
+            height: 80px;
+        }
+
+        .minute{
+            width: 4px;
+            height: 140px;
+            top: calc(50% - 70px);
+            left: calc(50% - 2px);
+            /*animation: zhuan 3600s linear infinite ;*/
+        }
+        .minute span{
+            height: 90px;
+        }
+
+        .second{
+            width: 2px;
+            height: 160px;
+            top: calc(50% - 80px);
+            left: calc(50% - 1px);
+            /*animation: zhuan 60s linear infinite ;*/
+        }
+        .second span{
+            height: 100px;
+        }
+        /*CSS3的效果动画测试*/
+        @keyframes zhuan {
+            from{
+                transform: rotate(0);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+        .dot{
+            width: 10px;
+            height: 10px;
+            border-radius:50%;
+            background-color:#fff ;
+            border: 2px solid #a3a3a3;
+            box-shadow: 1px 2px 4px 0 #545454;
+            /*注意:border有宽度*/
+            position: absolute;
+            top: calc(50% - 7px);
+            left: calc(50% - 7px);
+        }
+
+        /*开关按钮纯属瞎折腾...可忽略...*/
+        button{
+            width: 50px;
+            height: 30px;
+            background-color: #10b395;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            outline: none;
+            position: absolute;
+            bottom: 20px;
+            cursor: pointer;
+        }
+        button:nth-of-type(1){
+            left: calc(30% );
+        }
+        button:nth-of-type(2){
+            left: calc(50% + 30px);
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <div class="clock">
+
+            <i class="num1">3</i>
+            <i class="num2">6</i>
+            <i class="num3">9</i>
+            <i class="num4">12</i>
+
+            <!--时针-->
+            <div class="hour" id="hour"><span></span></div>
+            <!--分针-->
+            <div class="minute" id="minute"><span></span></div>
+            <!--秒针-->
+            <div class="second" id="second"><span></span></div>
+            <!--中间小圆点-->
+            <div class="dot"></div>
+        </div>
+
+        <!--开关-->
+        <button onclick="clearnT()">关闭</button>
+        <button onclick="setT()">开启</button>
+    </main>
+</body>
+
+<script type="text/javascript">
+    function times(){
+// 获取时/分/秒
+        var myHour = document.getElementById("hour"),
+            myMinute = document.getElementById("minute"),
+            mySecond = document.getElementById("second");
+        // 获取时间
+        var myDate = new Date(),
+            timeH = myDate.getHours(),
+            timeM = myDate.getMinutes(),
+            timeS = myDate.getSeconds();
+
+        //获取24小时的,减去12,12小时制表盘
+        var timepan = timeH - 12;
+        //一小时是30度,获取小时数字(12小时制表盘),相乘获得总旋转度数
+        var h = timepan * 30,
+        //一圈是60分钟,一圈是360度,每一分钟间隔6度,获取相应的分钟数,乘以6,得出分针相应的分针旋转度数
+            m = timeM * 6,
+        //一圈60秒,一秒间隔6度,获取相应的秒钟数,乘以每秒的6度,得出相应秒针旋转度数
+            s = timeS * 6;
+
+        myHour.style.transform = "rotate(" + h + "deg)";
+        myMinute.style.transform = "rotate(" + m + "deg)";
+        mySecond.style.transform = "rotate(" +  s + "deg)" ;
+    }
+
+    var timer = setInterval(times, 1000);
+
+    function clearnT() {
+        clearInterval(timer)
+    }
+    function setT() {
+        timer = setInterval(times, 1000);
+    }
+</script>
+</html>

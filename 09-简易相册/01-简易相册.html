@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>简易相册</title>
+    <!-- 导入外部的css文件 -->
+    <link rel="stylesheet" href="libs/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="libs/fancybox/helpers/jquery.fancybox-buttons.css">
+    <link rel="stylesheet" href="libs/fancybox/helpers/jquery.fancybox-thumbs.css">
+    <!-- 导入外部的js文件 -->
+    <script src="libs/jquery.js"></script>
+    <script src="libs/fancybox/jquery.fancybox.js"></script>
+    <script src="libs/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+    <script src="libs/fancybox/helpers/jquery.fancybox-thumbs.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #444;
+            height: 100vh;
+        }
+
+        #xiangce>div>a {
+            width: 100%;
+            height: 100%;
+            display: block;
+            /* 首行缩进 */
+            text-indent:-100px;
+            /* 处理内容溢出，即多余内容裁剪 */
+            overflow: hidden;
+        }
+
+        /* 直系子元素div */
+
+        #xiangce>div {
+            width: 100px;
+            height: 100px;
+            /* 设置实线边框 */
+            border: solid 5px #fff;
+            border-bottom: solid 18px #fff;
+            /* 设置绝对定位 */
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            /* 过渡时间:即样式在切换过程中所需要的时间*/
+            transition-duration: 0.5s;
+        }
+
+        /* 设置鼠标悬停效果，即鼠标放在标签之上时的形态 */
+
+        #xiangce>div:hover {
+            /* 图形转换：旋转 放大 !important优先级*/
+            transform: rotate(0) scale(1.5) !important;
+            /* 设置层级关系，z轴的 */
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 相册的容器标签 -->
+    <div id="xiangce">
+        <div style="background-image:url(images/thumbs/0.jpg);">
+            <!-- group:可以实现一组图片的自动轮播，也可以显示缩略图 -->
+            <a href="images/0.jpg" rel="group">图片1</a>
+        </div>
+        <div style="background-image:url(images/thumbs/1.jpg);">
+            <a href="images/1.jpg" rel="group">图片2</a>
+        </div>
+        <div style="background-image:url(images/thumbs/2.jpg);">
+            <a href="images/2.jpg" rel="group">图片3</a>
+        </div>
+        <div style="background-image:url(images/thumbs/3.jpg);">
+            <a href="images/3.jpg" rel="group">图片4</a>
+        </div>
+        <div style="background-image:url(images/thumbs/4.jpg);">
+            <a href="images/4.jpg" rel="group">图片5</a>
+        </div>
+    </div>
+</body>
+<!-- 
+    1.页面刷新时，图片随机位置、随机旋转角度显示
+    位置范围：1/4-3/4;
+    旋转范围：-40deg-40deg;
+
+ -->
+<script>
+
+    //getElementById(IdName)--一个
+    //getElementsByTagName(标签名称)--所有
+    //getElementsByClassName(className)--所有
+    //querySelectorAll(css选择器)--所有  quert:查询 selector:选择器  根据选择器选中标签
+
+    //获取所有的div标签   
+    var divs = document.querySelectorAll("#xiangce > div");
+
+    //获取浏览器的宽度和高度
+
+    var liuWidth = document.documentElement.clientWidth;
+    var liuHeight = document.documentElement.clientHeight;
+    // alert(liuWidth);
+
+    //通过for语句获取每一个div标签
+    for (var i = 0; i < divs.length; i++) {
+        // console.log(divs[i]);
+
+        //可以得到：[0,1),想要：取值范围：[1/4,3/4];
+        //(0,1/2)得到(1/4,3/4)   var left=Math.random()/2+1/4;
+        var left = Math.random() / 2 * liuWidth + liuWidth / 4;
+        var up = Math.random() / 2 * liuHeight + liuHeight / 4;
+
+        divs[i].style.left = left + "px";
+        divs[i].style.top = up + "px";
+
+        //旋转角度：（-40，40）；
+        var rotDeg = Math.random() * 80 - 40;
+
+        divs[i].style.transform = "rotate(" + rotDeg + "deg)";
+    }
+
+    //第三方插件使用
+    $("#xiangce>div a").fancybox({
+        //图片打开时的效果：弹性显示，图片关闭时的效果：弹性关闭
+        openEffect: "elastic",
+        closeEffect: "elastic",
+
+        //不显示关闭按钮
+        closeBtn: false,
+
+        //是否自动播放
+        autoPlay: true,
+        
+        //帮助
+        helpers: {
+            //显示控制按钮窗口
+            buttons: {},
+            //显示缩略图:始终在中间显示
+            thumbs:{alwaysCenter:true},
+            //文字在图片内部左下角显示
+            title:{type:"inside"}
+        },
+
+
+
+        //在加载之前，运行fuction中的内容
+        //这个(a)标题：这个标签内部的文本内容
+        beforeLoad:function(){
+            this.title=$(this.element).text();
+
+        }
+        
+
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动物聊天</title>
+    <style>
+        body {
+            /* 外边距 */
+            margin: 0;
+            /* 开启弹性布局，内部的子元素默认在水平方向上排布 */
+            display: flex;
+        }
+
+        .left {
+            /* 高度 */
+            height: 100vh;
+            /* 宽度，百分比，继承于父元素body */
+            width: 50%;
+            /* 背景颜色  十六进制表示 */
+            background-color: #FFCA95;
+            display: flex;
+            /* 竖直方向对齐方式 */
+            align-items: center;
+            /* 水平方向对齐方式 */
+            justify-content: flex-end;
+        }
+
+        .right {
+            /* 高度 */
+            height: 100vh;
+            /* 宽度，百分比，继承于父元素body */
+            width: 50%;
+            /* 背景颜色  十六进制表示 */
+            background-color: yellow;
+            display: flex;
+            /* 竖直方向对齐方式 */
+            align-items: center;
+            /* 水平方向对齐方式 */
+            justify-content: flex-start;
+        }
+
+        /* .left标签中的直系嵌套元素 */
+
+        .left>section {
+            width: 350px;
+            height: 190px;
+            /*background-color:red;*/
+            /* 设置相对定位，相对于自身原来的位置，对自身标签进行位置偏移， */
+            position: relative;
+            /* 右外边距 */
+            margin-right: 50px;
+
+        }
+
+        .right>section {
+            margin-left: 50px;
+        }
+
+        .left .tail {
+            width: 80px;
+            height: 24px;
+            background-color: #475881;
+            /* 左上角圆角 */
+            border-top-left-radius: 12px;
+            /* 左下角圆角 */
+            border-bottom-left-radius: 12px;
+            /* 设置绝对定位 */
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .left .duzi {
+            width: 200px;
+            height: 110px;
+            background-color: #7C85AB;
+            /* 边框圆角:四个角 */
+            border-radius: 55px;
+            position: absolute;
+            bottom: 0;
+            left: 30px;
+        }
+
+        .left .duzi span {
+            width: 37px;
+            height: 24px;
+            background-color: #fff;
+            /* 转换标签特性，可以设置宽高 */
+            display: inline-block;
+            /* 其参照物是肚子 */
+            position: absolute;
+            left: 145px;
+            bottom: 15px;
+            border-radius: 12px;
+        }
+
+        .left .duzi .foot {
+            left: 100px;
+        }
+
+        .left .tou {
+            width: 135px;
+            height: 74px;
+            background-color: #7C85AB;
+            border-radius: 37px;
+            position: absolute;
+            left: 100px;
+            top: 40px;
+            /* 设置边框(标签)阴影: x轴  Y轴 阴影模糊度  颜色 */
+            box-shadow: -8px 0 0 #475881;
+        }
+
+        .left .ear {
+            position: absolute;
+            top: -30px;
+            left: 20px;
+        }
+
+        .left .ear span {
+            display: inline-block;
+            /* 设置透明的边框颜色  transparent:透明 */
+            /*border:solid 10px transparent;*/
+            /*border-top-color:red;*/
+            /*border-bottom-color:green;*/
+            /*border-left-color:blue;*/
+            /*border-right-color:yellow;*/
+            border-bottom: solid 30px #475881;
+            border-left: solid 10px transparent;
+            border-right: solid 25px transparent;
+        }
+
+        .left .eye {
+            position: absolute;
+            right: 45px;
+            bottom: 22px;
+        }
+
+        .left .eye span {
+            display: inline-block;
+            border: solid 6px black;
+            border-radius: 6px;
+        }
+
+        /* :first-child  第一个子元素 */
+
+        .left .eye span:first-child {
+            margin-right: 2px;
+        }
+
+        .left .mouth {
+            /* 处理span之间的间距 */
+            font-size: 0;
+            position: absolute;
+            bottom: 0;
+            right: 35px;
+        }
+
+        .left .mouth span {
+            display: inline-block;
+            border: solid 11px #fff;
+            border-radius: 11px;
+
+        }
+
+        .left .mouth i {
+            display: inline-block;
+            border-top: solid 10px #FFA5C0;
+            border-left: solid 10px transparent;
+            border-right: solid 10px transparent;
+            position: absolute;
+            top: 0;
+            left: 12px;
+        }
+
+        .left .int>span {
+            display: inline-block;
+            width: 132px;
+            height: 12px;
+            border-radius: 6px;
+            background-color: #475881;
+            position: absolute;
+            bottom: 0;
+            right: 30px;
+        }
+
+        /* :before 伪元素选择器:在当前标签之前添加新内容 */
+
+        .left .int>span:before {
+            content: '';
+            display: inline-block;
+            width: 72px;
+            height: 12px;
+            background-color: #20314E;
+            border-radius: 6px;
+            position: absolute;
+            left: -65px;
+        }
+
+        .left .int>div {
+            width: 130px;
+            height: 85px;
+            background-color: #20314E;
+            border-radius: 8px;
+            position: absolute;
+            right: 20px;
+            bottom: 12px;
+            /* 图形转换:倾斜  skew(x轴) */
+            transform: skew(-15deg);
+        }
+
+        .left .int>div span {
+            display: inline-block;
+            width: 10px;
+            height: 17px;
+            background-color: #475881;
+            border-radius: 5px;
+            position: absolute;
+            /* calc() 自动进行不同单位的四则运算 */
+            left: calc(55% - 5px);
+            top: calc(50% - 8.5px);
+        }
+
+        .left .int>div span:first-child {
+            left: calc(44% - 5px);
+        }
+
+        /* 右侧内容的样式 */
+
+        .right section {
+            width: 350px;
+            height: 190px;
+           
+            position: relative;
+            margin-left: 50px;
+        }
+
+        .right .tail {
+            width: 80px;
+            height: 34px;
+            background-color: #F07E42;
+            border-top-right-radius: 17px;
+            border-bottom-right-radius: 17px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+
+        .right .duzi {
+            width: 200px;
+            height: 110px;
+            background-color: #FFA852;
+            border-radius: 55px;
+            position: absolute;
+            bottom: 0;
+            right: 30px;
+        }
+
+        .right .duzi span {
+            width: 37px;
+            height: 24px;
+            background-color: #fff;
+            display: inline-block;
+            position: absolute;
+            right: 145px;
+            bottom: 15px;
+            border-radius: 12px
+        }
+
+        .right .duzi .foot {
+            right: 100px;
+            :
+        }
+
+        .right .tou {
+            width: 135px;
+            height: 74px;
+            background-color: #FFA852;
+            border-radius: 37px;
+            position: absolute;
+            right: 90px;
+            top: 40px;
+            box-shadow: 8px 0 0 #F07E42;
+        }
+
+        .right .ear {
+            position: absolute;
+            top: -30px;
+            right: 30px;
+        }
+
+        .right .ear > .e1 {
+            display: inline-block;
+            /*border: solid 10px transparent;*/
+            /*border-top-color: red;*/
+            /*border-bottom-color: green;*/
+            /*border-left-color: blue;*/
+            /*border-right-color: yellow;*/
+            border-bottom: solid 30px #F07E42;
+            border-left: solid 25px transparent;
+            border-right: solid 10px transparent;
+            position: absolute;
+            left:-75px;
+        }
+        .right  .ear > .e2{
+            display: inline-block;
+            border-bottom: solid 30px #F07E42;
+            border-left: solid 10px transparent;
+            border-right: solid 25px transparent;
+            position: absolute;
+            left:-25px;
+          
+        }
+
+
+        .right .eye {
+            position: absolute;
+            left: 45px;
+            bottom: 22px;
+        }
+
+        .right .eye span {
+            display: inline-block;
+            border: solid 6px black;
+            border-radius: 6px;
+        }
+
+        .right .eye span:first-child {
+            margin-right: 2px;
+        }
+
+        .right .mouth {
+            font-size: 0;
+            position: absolute;
+            bottom: 0;
+            left: 35px;
+        }
+
+        .right .mouth .m1 {
+            display: inline-block;
+            border: solid 11px #fff;
+            border-top-left-radius: 11px;
+            border-bottom-left-radius: 11px;
+            
+        }
+        .right .mouth .m2 {
+            display: inline-block;
+            border: solid 11px #fff;
+            border-top-right-radius: 11px;
+            border-bottom-right-radius: 11px;
+            
+        }
+
+
+        .right .mouth i {
+            display: inline-block;
+            border-top: solid 10px black;
+            border-left: solid 10px transparent;
+            border-right: solid 10px transparent;
+            position: absolute;
+            top: 3px;
+            left: 12px;
+        }
+
+        .right .int>span {
+            display: inline-block;
+            width: 132px;
+            height: 12px;
+            border-radius: 6px;
+            background-color: #F07E42;
+            position: absolute;
+            bottom: 0;
+            left: 30px;
+        }
+
+        /* :before 伪元素选择器:在当前标签之前添加新内容 */
+
+        .right .int>span:after {
+            content: '';
+            display: inline-block;
+            width: 72px;
+            height: 12px;
+            background-color: #FFCA95;
+            border-radius: 6px;
+            position: absolute;
+            right: -65px;
+        }
+
+        .right .int>div {
+            width: 130px;
+            height: 85px;
+            background-color: #FFCA95;
+            border-radius: 8px;
+            position: absolute;
+            left: 20px;
+            bottom: 12px;
+            /* 图形转换:倾斜  skew(x轴) */
+            transform: skew(15deg);
+        }
+
+        .right .int>div span {
+            display: inline-block;
+            width: 10px;
+            height: 17px;
+            background-color: #F07E42;
+            border-radius: 5px;
+            position: absolute;
+            /* calc() 自动进行不同单位的四则运算 */
+            left: calc(55% - 5px);
+            top: calc(50% - 8.5px);
+        }
+
+        .right .int>div span:first-child {
+            left: calc(44% - 5px);
+        }
+
+        /* 动画 */
+
+        .left .duzi .foot {
+            /* 设置动画名称 */
+            animation-name: catLeft;
+            /* 设置动画时间 */
+            animation-duration: 9s;
+            /* 循环 */
+            animation-iteration-count: infinite;
+            /* 设置动画运行速度，低速度开始 */
+            animation-timing-function: ease-in;
+        }
+
+        /* 具体动作过程 */
+
+        @keyframes catLeft {
+            2%,
+            8%,
+            14%,
+            18%,
+            22% {
+                /* 图形转换：沿Y轴平移 */
+                transform: translateY(-8px);
+            }
+            6%,
+            10%,
+            16%,
+            20%,
+            24% {
+                transform: translateY(0)
+            }
+        }
+
+        /* 猫的右爪 */
+
+        .left .duzi span:last-child {
+            animation-name: catRight;
+            animation-duration: 9s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+
+        @keyframes catRight {
+            2%,
+            8%,
+            14%,
+            18%,
+            22%,
+            28% {
+                transform: translateY(0);
+            }
+            6%,
+            10%,
+            16%,
+            20%,
+            24% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .right .tou .eye {
+            animation-name: dogEye;
+            animation-duration: 9s;
+            animation-iteration-count: infinite;
+            /* 愈来愈慢 */
+            animation-timing-function: ease-in;
+        }
+
+        @keyframes dogEye {
+            17%,
+            37% {
+                /* 设置不同样式（不是动画）进行切换时的过度速度（越来越快） */
+                transition-timing-function: ease-out;
+                transform: translateX(-8px);
+            }
+            25%,
+            45% {
+                transform: translateX(0);
+            }
+        }
+
+        /* 狗的动画 */
+
+        .right .duzi .foot {
+            /* 设置动画名称 */
+            animation-name: dogLeft;
+            /* 设置动画时间 */
+            animation-duration: 9s;
+            /* 循环 */
+            animation-iteration-count: infinite;
+            /* 设置动画运行速度，低速度开始 */
+            animation-timing-function: ease-in;
+        }
+
+        /* 具体动作过程 */
+
+        @keyframes dogLeft {
+            52%,
+            58%,
+            64%,
+            68%,
+            72% {
+                /* 图形转换：沿Y轴平移 */
+                transform: translateY(-8px);
+            }
+            50%,
+            56%,
+            60%,
+            66%,
+            70%,
+            76% {
+                transform: translateY(0);
+            }
+        }
+
+        /* 狗的右爪 */
+
+        .right .duzi span:last-child {
+            animation-name: dogRight;
+            animation-duration: 9s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+
+        @keyframes dogRight {
+            56%,
+            60%,
+            66%,
+            70%,
+            74% {
+                transform: translateY(-8px);
+            }
+            54%,
+            58%,
+            62%,
+            68%,
+            72%,
+            78% {
+                transform: translateY(0);
+            }
+        }
+
+        .left .tou .eye {
+            animation-name: catEye;
+            animation-duration: 9s;
+            animation-iteration-count: infinite;
+         
+        }
+
+        @keyframes catEye {
+            50%,
+            100% {
+                /* 设置不同样式（不是动画）进行切换时的过度速度（越来越快） */
+                transition-timing-function: ease-out;
+                transform: translateX(0);
+            }
+            70%,
+            90% {
+                transition-timing-function: ease-out;
+                transform: translateX(3px);
+            }
+
+            62%,
+            82% {
+                transform: translateX(-2px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <!-- section:文档的一部分或一小节，可以做普通容器使用 -->
+        <section>
+
+            <!-- 尾巴 -->
+            <div class="tail"></div>
+            <!-- 肚子 -->
+            <div class="duzi">
+                <!-- span:普通的文本标签，可以当做简易容器使用 -->
+                <span class="foot"></span>
+                <span></span>
+            </div>
+            <!-- 头 -->
+            <div class="tou">
+                <!-- 耳朵 -->
+                <div class="ear">
+                    <span></span>
+                    <span></span>
+                </div>
+                <!-- 眼睛 -->
+                <div class="eye">
+                    <span></span>
+                    <span></span>
+                </div>
+                <!-- 嘴 -->
+                <div class="mouth">
+                    <span></span>
+                    <span></span>
+                    <!-- i:斜体文字标签，可以做普通容器 -->
+                    <i></i>
+                </div>
+
+            </div>
+
+            <!-- 电脑 -->
+            <div class="int">
+                <span></span>
+                <div>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+
+
+    <div class="right">
+        <section>
+
+            <!-- 尾巴 -->
+            <div class="tail"></div>
+            <!-- 肚子 -->
+            <div class="duzi">
+                <!-- span:普通的文本标签，可以当做简易容器使用 -->
+                <span class="foot"></span>
+                <span></span>
+            </div>
+            <!-- 头 -->
+            <div class="tou">
+                <!-- 耳朵 -->
+                <div class="ear">
+                    <span class="e1"></span>
+                    <span class="e2"></span>
+                </div>
+                <!-- 眼睛 -->
+                <div class="eye">
+                    <span></span>
+                    <span></span>
+                </div>
+                <!-- 嘴 -->
+                <div class="mouth">
+                    <span class="m1"></span>
+                    <span class="m2"></span>
+                    <!-- i:斜体文字标签，可以做普通容器 -->
+                    <i></i>
+                </div>
+
+            </div>
+
+            <!-- 电脑 -->
+            <div class="int">
+                <span></span>
+                <div>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字母游戏</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+
+            color: white;
+            background-image: radial-gradient(circle, #999, black 50%, black);
+            text-align: center;
+            font-family: "华文新魏";
+            overflow: hidden;
+        }
+
+        #letter {
+            color: violet;
+            font-size: 300px;
+            padding-top: 300px;
+            text-shadow: 5px 3px 2px blue;
+        }
+
+        #result {
+            padding-top: 100px;
+            color: sandybrown;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .right {
+            animation-name: zoomIn;
+            animation-duration: 2s;
+            /* animation-fill-mode: both; */
+        }
+
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            20%,
+            60% {
+                transform: translateX(-10px);
+            }
+            40%,
+            80% {
+                transform: translateX(10px);
+            }
+        }
+
+        .wrong {
+            animation-name: shake;
+            animation-duration: 0.5s;
+            color: red !important;
+            /* animation-fill-mode: both; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="letter" class="">m</div>
+    <p id="result">大胆的按吧</p>
+
+</body>
+<script>
+    //获取标签
+    var letterBox = document.getElementById("letter");
+    var pBox = document.getElementById("result");
+    //正确，错误个数
+    var ok = 0;
+    var error = 0;
+
+    function show() {
+
+
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var num = Math.random() * 26;
+        num = Math.floor(num);
+        //最后要的结果是字母组
+        letterBox.innerHTML = chars[num];
+    }
+    show();
+
+    window.onkeydown = function (event) {
+        var key = event.key;
+        key = key.toUpperCase();
+        // console.log(event);
+        var syskey=letterBox.innerHTML;
+        if(key==syskey){
+            ok=ok+1;
+            letterBox.className="right";
+            show();
+            setTimeout(function(){
+                letterBox.className="";
+            }, 500);
+        }
+        else{
+            error=error+1;
+            letterBox.className="wrong";
+            show();
+            setTimeout(function(){
+                letterBox.className="";
+            }, 500);
+        }
+    
+
+    function calc(){
+        if (ok + error > 0) {  
+            //百分比
+            var result = ok / (ok + error) * 100;
+            //toFixed(n) 保留n个小数点
+            result = result.toFixed(2);
+            pBox.innerHTML = "正确个数: " + ok +"，错误个数: " + error + ",正确率：" + result + "%";
+          }
+          
+    }
+    calc();
+    
+}
+
+</script>
+
+</html>

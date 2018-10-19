@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- lang:语言 en:英语 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*解决方案1：标签选择器*/
+    div{
+        color:red;
+        background-color:yellow;
+      
+    }
+    /*解决方案3：类名选择器*/
+    .demo1{
+        font-size:15px;
+    }
+    .demo2{
+        font-size:20px;
+        color:blue;
+       
+    }
+    #only{
+        color:violet;
+    }
+
+    </style>
+</head>
+<body>
+    <!-- class:给标签取类名，class是小名，标签是大名，可以重复使用 -->
+    <div class="demo1">
+        css:Cascading StyleSheeet 层叠样式表
+        作用：给相对应的标签设置不同的样式，比如字体的大小、字体颜色、背景颜色、边框等等<br>
+        问题：如何选中相对应得标签？<br>
+        解决方案：<br>
+        1.可以通过标签名称选择(选中所有的该名称的标签)<br>
+        2.可以通过标签id选择(id值是唯一的)<br>
+        3.通过类名选择标签(选中的所有的具有类名的标签)<br>
+
+    </div>
+    <div class="demo2">
+            css:Cascading StyleSheeet 层叠样式表
+            作用：给相对应的标签设置不同的样式，比如字体的大小、字体颜色、背景颜色、边框等等<br>
+            问题：如何选中相对应得标签？<br>
+            解决方案：<br>
+            1.可以通过标签名称选择(选中所有的该名称的标签)<br>
+            2.可以通过便签id选择(id值是唯一的)<br>
+            3.通过类名选择标签(选中的所有的具有类名的标签)<br>
+        </div>
+   <p id="only">值是唯一的</p>
+   <p>这个段落不受影响</p>
+</body>
+</html>

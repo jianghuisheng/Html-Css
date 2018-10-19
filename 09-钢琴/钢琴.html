@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>钢琴</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #444;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        main {
+            width: 800px;
+            height: 400px;
+            background-image: url(keys.png);
+            /* background-repeat: no-repeat;*/
+            /* 设置背景图片的宽高 原比例 */
+            background-size: 100% 100%;
+            /* 边框 */
+            border: solid 20px #444;
+            /* 阴影 */
+            box-shadow: 0 0 10px #fff;
+            /* 边框上边距 */
+            border-top: solid 40px #444;
+            /* 圆角化 */
+            border-radius: 8px;
+            /* 开启弹性布局 */
+            display: flex;
+
+        }
+
+        * {
+            /* *:通配符，匹配所有的标签 */
+            /* border-box:即所设置的width是标签自身的，默认的width是内容的宽度（边框*2 可按F12查看元素） */
+            box-sizing: border-box;
+        }
+
+        main div {
+            width: 100%;
+            height: 100%;
+
+
+        }
+
+        .active {
+            background-image: linear-gradient(to bottom, rgb(255, 255, 255, 0), rgb(255, 255, 255, 0), rgba(0, 0, 0, 0.2))
+        }
+    </style>
+</head>
+
+<body>
+    <!-- audio:音频标签，加载音频 -->
+    <audio src="notes/1.oga"></audio>
+    <audio src="notes/2.oga"></audio>
+    <audio src="notes/3.oga"></audio>
+    <audio src="notes/4.oga"></audio>
+    <audio src="notes/5.oga"></audio>
+    <audio src="notes/6.oga"></audio>
+    <audio src="notes/7.oga"></audio>
+    <audio src="notes/8.oga"></audio>
+    <audio src="notes/9.oga"></audio>
+    <main>
+        <div class=""></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </main>
+</body>
+<script>
+    var divs = document.querySelectorAll("div");
+
+    var audios = document.querySelectorAll("audio");
+
+
+    //event:当前按键行为，
+    //1-9对应的ASCII码值是 event.keyCode: 49-57 
+    // divs[0]  == divs[i] 产生效果 所以i=0时，对应的event.keyCode要变成49  console.log(event)测试
+
+    window.onkeydown = function (event) {
+        for (var i = 0; i < divs.length; i++) {
+            // console.log(event);
+            if (event.keyCode - 49 == i) {
+                divs[i].className = "active";
+                // 加载音频，并播放
+                audios[i].load();
+                audios[i].play();
+            }
+        }
+    }
+
+    //当松开键的时候，颜色消失
+    window.onkeyup = function () {
+
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].className = "";
+        }
+    }
+</script>
+
+</html>

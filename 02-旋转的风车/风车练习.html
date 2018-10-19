@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>旋转的风车</title>
+    <style>
+        main {
+            width: 1300px;
+            height: 500px;
+            background-image: url(caodi.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: relative;
+
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .img1 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 340px;
+            bottom: 170px;
+            animation-name: zhuan;
+            /* 设置动画时间， */
+            animation-duration: 2s;
+            /* 设置动画的执行次数：循环/无穷尽，也可以是数字 */
+            animation-iteration-count: infinite;
+            /* 设置动画的执行速度：匀速 */
+            animation-timing-function: linear;
+        }
+
+        @keyframes zhuan {
+            from {
+                transform: rotate(0)
+            }
+            to {
+                transform: rotate(360deg);
+
+            }
+        }
+
+        img:hover {
+            animation-duration: 0.8s;
+        }
+
+        .img2 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 567px;
+            bottom: 35px;
+            animation-name: zhuan;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .img3 {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 705px;
+            bottom: 20px;
+            animation-name: zhuan;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <img class="img1" src="fengche.png" alt="">;
+        <img class="img2" src="fengche.png" alt="">
+        <img class="img3" src="fengche.png" alt="">
+    </main>
+</body>
+
+</html>

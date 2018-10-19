@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body{
+            margin:0;
+            height:100vh;
+            background-image:url(bg2.jpg);
+            background-size:100% 100%;
+        }
+        ul{
+            /* 去掉小圆点 */
+            list-style:none;
+            /* 去掉上下的外边距 */
+            margin:0;
+            /* 去掉左右的内边距 */
+            padding:0;
+            position: absolute;
+            bottom:30px;
+            left:0;
+        }
+        a{
+            color:white;
+            /* 去掉下划线 */
+            text-decoration: none;
+            /* 设置半透明背景颜色 */
+            background-color:rgba(0,0,0,.3);
+            /* 内边距：水平方向 竖直方向 */
+            padding:8px 15px;
+            display: inline-block;
+            margin-bottom:8px;
+            position: relative;
+            /* 设置动画名称、时间、速度 */
+            animation-name:ping;
+            animation-duration:1s;
+            animation-timing-function: linear;
+            /* 保持动画的连贯性，将动画保留在结束位置 */
+            animation-fill-mode:both;
+
+        }
+        @keyframes ping {
+            0%{
+                transform: scale(1) translateX(0) rotate(0);
+            }
+            100%{
+                transform: scale(0.5) translateX(300px) rotate(360deg);
+            }
+        }
+        a .fa{
+            position: absolute;
+            right:10px;
+            top:8px;
+            /* 字体图标库， */
+            font-size:20px;
+        }
+        li:nth-child(1) a{
+            padding-right:40px;
+        }
+        /* 第二个Li中的a */
+        li:nth-child(2) a{
+            padding-right:70px;
+            animation-delay:.5s;
+        }
+        li:nth-child(3) a{
+            padding-right:110px;
+            animation-delay:1s;
+        }
+        li:nth-child(4) a{
+            padding-right:60px;
+            animation-delay:1.5s;
+        }
+        li:nth-child(5) a{
+            padding-right:80px;
+            animation-delay:2s;
+        }
+    </style>
+
+</head>
+<body>
+<!--
+ ul:无序列表的容器标签  直系子元素尽可能只能是li
+ li:列表项标签
+ -->
+    <ul>
+        <li>
+            <a href="">
+                楼盘详情
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                全景户型
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                项目图册
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                预约看房
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                房贷计算器
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

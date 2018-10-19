@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>五彩风车</title>
+    <style>
+        main {
+
+            height: 500x;
+            width: 500px;
+            position: relative;
+           
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .img3 {
+
+            position: absolute;
+            left: 250px;
+            top: 500px;
+        }
+
+        .img2 {
+
+            position: absolute;
+            left: 250px;
+            top: 500px;
+        }
+
+        .img1 {
+
+            position: absolute;
+            animation-name: zhuan;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            left: 90px;
+            top: 330px;
+        }
+
+        img:hover {
+            animation-duration: 0.5s;
+        }
+
+        @keyframes zhuan {
+
+            from {
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <img class="img2" src="fcbg.png" alt="">
+        <img class="img1" src="fc.png" alt="">
+        <img class="img3" src="fcc.png" alt="">
+    </main>
+</body>
+
+</html>

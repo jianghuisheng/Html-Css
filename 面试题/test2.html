@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题</title>
+
+</head>
+<body>
+
+</body>
+<script>
+    // ********************************
+    // 第一题
+    document.write("请按F12,打开控制台查看,纯属个人计算,可能有错误,欢迎指出!");
+    // alert("请打开控制台查看,纯属个人计算/可能有错误,欢迎指出!");
+    for (var i = 100; i < 200; i++){
+        if (i % 3 == 0 && i % 5 == 3 && i % 7 == 3 ){
+            console.log('一:便利店一共有'+ i + "枚硬币");
+        }
+    }
+
+    // ********************************
+    // 第二题
+    // var wang = 3;
+    // var ge = 4;
+    // var juli = 400;
+    for(var z = 0; ; z++){
+        if(Math.round(400 / 3) == Math.round(400 + z) / 4){
+            console.log("二:大约要退" + z + "米");
+            break;
+        }
+    }
+
+    // ******************************
+    // 第三题
+    // 卖出总价: 600 * 2
+    // 第一件衣服原价 x :
+    // x - 600 = x * 0.2
+    // 第二件衣服原价 y :
+    // y + y * 0.2 = 600
+
+    //临时容器变量
+    var xian = 600 *2;
+    var x, y;
+
+    for (var x = 1; ; x++){
+        if ((x - 600) == (x * 0.2)){
+            console.log("三:")
+            console.log("第一件原价:" + x + "元");
+            x = x;
+            break;
+        }
+    }
+
+    for (var y = 1; ; y++){
+        if (y + y * 0.2 == 600 ){
+            console.log("第二件原价:" + y + "元");
+            y = y;
+            break;
+        }
+    }
+    // console.log(x);
+    // console.log(y);
+    console.log('现价综合减去原价总和为:' + (xian - (x + y)) + '元,故赔本买卖!');
+
+</script>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游动的圆</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: linear-gradient(45deg, #d91e18, #9a12b3)
+        }
+
+        .wrapper {
+            width: 150px;
+            height: 150px;
+            /* background-color:rgba(255, 255, 0, 0.5); */
+            position: absolute;
+            left: calc(40% - 70px);
+            top: calc(50% - 70px);
+
+            animation: move 1s ease-in-out 0s infinite alternate both;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(250px);
+            }
+        }
+
+        .first {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: purple;
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+            border-radius: 50%;
+        }
+
+        span {
+            animation: down 1s linear 0s infinite both;
+        }
+
+        @keyframes down {
+            0%,
+            50%,
+            100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-50px);
+            }
+            75% {
+                transform: translateY(50px);
+            }
+        }
+
+        .second {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            background-color: rgba(17, 207, 96, 0.582);
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            animation-delay: 0.1s;
+
+        }
+
+        .wrapper:nth-child(2) {
+            animation-delay: 0.1s;
+            z-index: 4;
+        }
+
+        .three {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(43, 20, 170, 0.794);
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
+            animation-delay: 0.3s;
+
+        }
+
+        .wrapper:nth-child(3) {
+            animation-delay: 0.3s;
+            z-index: 5;
+        }
+
+        .for {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(139, 90, 172, 0.3);
+            top: calc(50% - 10px);
+            left: calc(50% - 10px);
+            animation-delay: 0.3s;
+
+        }
+
+        .wrapper:nth-child(4) {
+            animation-delay: 0.3s;
+            z-index: 6;
+        }
+
+        .five {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(241, 48, 48, 0.1);
+            top: calc(50% - 5px);
+            left: calc(50% - 5px);
+            animation-delay: 0.4s;
+
+        }
+
+        .wrapper:nth-child(5) {
+            animation-delay: 0.4s;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <span class="first">
+
+        </span>
+    </div>
+    <div class="wrapper">
+        <span class="first second">
+
+        </span>
+    </div>
+    </div>
+    <div class="wrapper">
+        <span class="first three"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first for"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first five"></span>
+    </div>
+
+</body>
+
+</html>

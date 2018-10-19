@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表盘时钟</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            /* 开启弹性布局，控制内部子元素的排布方式 */
+            display: flex;
+            /* 水平方向的对齐方式 */
+            justify-content: center;
+            /* 竖直方向上的对齐方式 */
+            align-items: center;
+        }
+
+        main {
+            width: 650px;
+            height: 650px;
+            /* 设置背景图片 */
+            background-image: url(clock.jpg);
+            /* 设置相对定位，即绝对定位元素的参照物 */
+            position: relative;
+        }
+
+        #hour {
+            width: 450px;
+            height: 10px;
+            /*background-color:black;*/
+            /* 设置绝对定位，进行标签的平移 */
+            position: absolute;
+            /* calc() 进行不同单位的四则运算 */
+            top: calc(50% - 5px);
+            left: calc(50% - 225px);
+            animation-name: zhuan;
+            animation-duration: 43200s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            /* 动画已经执行了15s */
+            animation-delay: -10800s;
+        }
+
+        #hour span {
+            display: block;
+            height: 10px;
+            width: 200px;
+            background-color: red;
+            margin-left: 60px;
+            /* 设置边框圆角 */
+            border-radius: 5px;
+        }
+
+        #minute {
+            width: 450px;
+            height: 10px;
+            /*background-color:black;*/
+            /* 设置绝对定位，进行标签的平移 */
+            position: absolute;
+            /* calc() 进行不同单位的四则运算 */
+            top: calc(50% - 5px);
+            left: calc(50% - 225px);
+            animation-name: zhuan;
+            animation-duration: 3600s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            /* 动画已经执行了900s */
+            animation-delay: -900s;
+        }
+
+        #minute span {
+            display: block;
+            width: 220px;
+            height: 6px;
+            background-color: blue;
+            margin-top: 2px;
+            margin-left: 40px;
+            border-radius: 3px;
+        }
+
+        #second {
+            width: 450px;
+            height: 10px;
+            /*background-color:black;*/
+            /* 设置绝对定位，进行标签的平移 */
+            position: absolute;
+            /* calc() 进行不同单位的四则运算 */
+            top: calc(50% - 5px);
+            left: calc(50% - 225px);
+            /* 设置动画的属性：名称、时间、速度 */
+            animation-name: zhuan;
+            animation-duration: 60s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            /* 动画已经执行了15s */
+            animation-delay: -45s;
+        }
+
+        #second span {
+            display: block;
+            width: 250px;
+            height: 2px;
+            background-color: green;
+            margin-top: 4px;
+            margin-left: 15px;
+            border-radius: 1px;
+        }
+
+
+        @keyframes zhuan {
+            0% {
+                transform: rotate(0);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #dot {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            position: absolute;
+            top: calc(50% - 10px);
+            left: calc(50% - 10px);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="hour">
+            <span></span>
+        </div>
+        <div id="minute">
+            <span></span>
+        </div>
+        <div id="second">
+            <span></span>
+        </div>
+        <div id="dot"></div>
+    </main>
+</body>
+<script>
+    setInterval(function () {
+        // 获取秒钟、分钟、时钟标签
+        var second = document.getElementById('second');
+        var minute = document.getElementById('minute');
+        var hour = document.getElementById('hour');
+
+        // 获取最新的时间
+        var date = new Date();
+
+        // 获取秒钟、分钟、小时时间
+        var secTime = date.getSeconds();
+        var minTime = date.getMinutes();
+        var hourTime = date.getHours();
+        //
+        hourTime = hourTime - 12;
+
+        // 当前秒钟时间时，设置的延迟时间
+        var secDeg = -15 - secTime;
+        var minDeg = -15 * 60 - minTime * 60 - secTime;
+        var hourDeg = -3 * 60 * 60 - hourTime * 60 * 60 - minTime * 60;
+
+        // 设置标签的延迟时间 ，单位是 s秒
+        second.style.animationDelay = secDeg + 's';
+        minute.style.animationDelay = minDeg + 's';
+        hour.style.animationDelay = hourDeg + 's';
+
+
+    }, 000)
+</script>
+
+</html>

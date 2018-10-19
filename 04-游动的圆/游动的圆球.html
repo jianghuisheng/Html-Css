@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游动的圆球</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            /* 线性渐变颜色 */
+            /* background-image:linear-gradient(to right,#d91e18,#9a12b3); */
+            background-image: linear-gradient(45deg, #d91e18, #9a12b3)
+        }
+
+        /* 设置半透明背景颜色 rgb,取值范围[0,255] 
+    a:透明度，取值范围[0,1]
+    */
+        .wrapper {
+            width: 150px;
+            height: 150px;
+            /* background-color: rgba(255, 255, 255, 0.3); */
+            position: absolute;
+            left: calc(40% - 70px);
+            top: calc(50% - 70px);
+            animation-name: move;
+            animation-duration: 1s;
+            /* 动画慢速开始，慢速结束 */
+            animation-timing-function: ease-in-out;
+            /* 保持动画的连贯性,使动画保留在结束位置 */
+            animation-fill-mode: both;
+            /* 设置动画轮回播放，奇数正向，偶数反向 */
+            animation-direction: alternate;
+            /* 循环 */
+            animation-iteration-count: infinite;
+            /* 设置定位元素的层级关系 */
+            z-index: 10;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(270px);
+            }
+
+        }
+
+        /* 所有span的运动 */
+
+        span {
+            animation-name: down;
+            animation-duration: 1s;
+            /* 圆的速度匀速 */
+            animation-timing-function: linear;
+            /* 保持动画的连贯性,使动画保留在结束位置 */
+            animation-fill-mode: both;
+            /* 循环 */
+            animation-iteration-count: infinite;
+        }
+
+        .first {
+            /* 转换元素特性，可以设置宽高 */
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            /* 设置边框圆角，正圆形 */
+            border-radius: 50%;
+            /* 居中 */
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+
+
+        }
+
+        @keyframes down {
+            0%,
+            50%,
+            100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-50px);
+            }
+            75% {
+                transform: translateY(50px);
+            }
+        }
+
+        .second {
+            width: 40px;
+            height: 40px;
+           background-color: rgba(255, 255, 255, 0.7);
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            animation-delay: 0.1s;
+        }
+
+
+        /* :nth-child(n)第n个直系子元素 */
+
+        .wrapper:nth-child(2) {
+            animation-delay: 0.08s;
+            z-index: 8;
+        }
+
+
+
+        .three {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.5);
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
+            animation-delay: 0.28s;
+
+        }
+
+        .wrapper:nth-child(3) {
+            animation-delay: 0.15s;
+            z-index: 5;
+        }
+
+        .for {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            top: calc(50% - 10px);
+            left: calc(50% - 10px);
+            animation-delay: 0.4s;
+
+        }
+
+        .wrapper:nth-child(4) {
+            animation-delay: 0.18s;
+            z-index: 6;
+        }
+
+        .five {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: calc(50% - 5px);
+            left: calc(50% - 5px);
+            animation-delay: 0.5s;
+
+        }
+
+        .wrapper:nth-child(5) {
+            animation-delay: 0.2s;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- wrapper:容器 -->
+
+    <div class="wrapper">
+        <span class="first"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first second"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first three"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first for"></span>
+    </div>
+    <div class="wrapper">
+        <span class="first five"></span>
+    </div>
+
+
+
+</body>
+
+</html>

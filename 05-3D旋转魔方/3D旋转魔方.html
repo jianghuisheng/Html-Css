@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>旋转的魔方</title>
+    <style>
+        body {
+            margin: 0;
+
+            /* 设置背景图片 */
+            background-image: url(bg.jpg);
+            /* 设置背景图片是否重复，默认沿X,Y轴重复显示 */
+            background-repeat: no-repeat;
+            height: 100vh;
+            /* 设置背景图片大小：宽度 高度 */
+            background-size: 100% 100%;
+            /* 开启弹性布局，处理内部子元素的对齐方式 */
+            display: flex;
+            
+            justify-content: center;
+            align-items: center;
+            /* 设置视角与3D元素之间的距离 */
+            perspective:1000px;
+            /* 控制视角的位置 */
+            perspective-origin: 50% 50%;
+        }
+
+        main {
+            width: 200px;
+            height: 200px;
+            /* background-color: rgba(47, 172, 109, 0.596); */
+            /* 保留内部子元素的3D效果 */
+             transform-style: preserve-3d; 
+            animation-name:zhuan;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+ 
+        
+        @keyframes zhuan{
+            0%{
+                transform:rotateX(0) rotateY(0);
+            }
+            100%{
+                transform: rotateX(360deg) rotateY(360deg)
+            }
+        }
+
+        main>div {
+            width: 100%;
+            height: 100%;
+            /* 处理标签层级关系 */
+            position: absolute;
+            /* 让过渡效果持续 5 秒*/
+            transition-duration:0.5s;
+        }
+        /* 用手比划 */
+
+        .hou {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform:rotateY(180deg)  translateZ(100px);
+        }
+        .qian {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform:translateZ(100px);
+        }
+        .shang {
+            background-color: rgba(255, 255, 255, 0.3);
+            /* 图形转换：旋转 平移 倾斜 缩放 */
+           transform: rotateX(90deg) translateZ(100px);
+        }
+        .xia {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform:rotateX(-90deg) translateZ(100px);
+        }
+        .zuo {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform:rotateY(-90deg) translateZ(100px);
+        }
+        .you {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform:rotateY(90deg) translateZ(100px);
+        }
+
+       
+        /* :hover设置鼠标悬停效果，即鼠标在标签之上时，样式发生变化 */
+       main:hover .hou{
+           transform:translateZ(300px);
+       }
+       main:hover .qian{
+           transform:rotateY(180deg) translateZ(300px);
+       }
+       main:hover .zuo{
+           transform:rotateY(-90deg) translateZ(300px);
+       }
+       main:hover .you{
+           transform:rotateY(90deg) translateZ(300px);
+       }
+       main:hover .shang{
+           transform:rotateX(90deg) translateZ(300px);
+       }
+       main:hover .xia{
+           transform:rotateX(-90deg) translateZ(300px);
+       }
+        /* 小立方体 */
+        section{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+           
+            left:calc(50% - 50px);
+            top:calc(50% - 50px);
+            transform-style: preserve-3d;
+            animation-name:zhuan2;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes zhuan2{
+            0%{
+                transform:rotateX(0) rotateY(0);
+            }
+            100%{
+                transform: rotateX(360deg) rotateY(360deg)
+            }
+        }
+        section>div {
+            width: 100%;
+            height: 100%;
+            /* 处理标签层级关系 */
+            position: absolute;
+            transition-duration:0.5s;
+        }
+        
+        .hou2 {
+            background-color: red;
+            transform:rotateY(180deg)  translateZ(50px);
+        }
+        .qian2 {
+            background-color: red;
+            transform:translateZ(50px);
+        }
+        .shang2{
+            background-color: red;
+            /* 图形转换：旋转 平移 倾斜 缩放 */
+           transform: rotateX(90deg) translateZ(50px);
+        }
+        .xia2 {
+            background-color: red;
+            transform:rotateX(-90deg) translateZ(50px);
+        }
+        .zuo2 {
+            background-color: red;
+            transform:rotateY(-90deg) translateZ(50px);
+        }
+        .you2 {
+            background-color: red;
+            transform:rotateY(90deg) translateZ(50px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- main:立方体的容器标签,容器面所在的位置是每个面的初始位置 -->
+    <main>
+        <div class="qian"></div>
+        <div class="hou"></div>
+        <div class="shang"></div>
+        <div class="xia"></div>
+        <div class="zuo"></div>
+        <div class="you"></div>
+        <section>
+                <div class="qian2"></div>
+                <div class="hou2"></div>
+                <div class="shang2"></div>
+                <div class="xia2"></div>
+                <div class="zuo2"></div>
+                <div class="you2"></div>
+        </section>
+    </main>
+
+</body>
+
+</html>

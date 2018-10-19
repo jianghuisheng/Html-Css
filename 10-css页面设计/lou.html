@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <title>假日分析</title>
+    
+    <style>
+    body{
+        margin:0;
+        height: 100vh;
+        background-image:url(bg3.jpg);
+        background-size:100% 100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    ul{
+        list-style: none;
+        /* margin:0;
+        padding:0; */
+        /* position:absolute; */
+
+    }
+   a{
+        text-decoration:none;
+        color:rgb(130, 26, 161);
+        background-color: rgba(230, 66, 25, 0.507);
+        display: inline-block;
+        padding: 30px 20px;
+        margin:20px;
+        border-radius: 70%;
+
+        animation-name: effect;
+        animation-duration: 5s;
+        animation-fill-mode: both;
+        animation-timing-function: linear;
+ 
+        /* animation-iteration-count: infinite; */
+        
+    }
+    @keyframes effect{
+        0%,40%,80%{
+            transform:translateX(0) scale(1);
+        }
+        20%{
+            transform: translateX(200px) scale(1.5);
+        }
+        60%{
+            transform: translateX(-200px) scale(1.5);
+        }
+    }
+    a i.fa {
+           
+            
+            font-size: 50px;
+        }
+        
+    
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="">中秋节<i class="fa fa-hand-peace-o"></i></a></li>
+    </ul>
+    <ul>
+        <li><a href="">国庆节<i class="fa fa-cab"></i></a></li>
+    </ul>
+    <ul>
+        <li><a href="">春节<i class="fa fa-thumbs-o-up"></i></a></li>
+    </ul>
+
+
+</body>
+
+
+</html>

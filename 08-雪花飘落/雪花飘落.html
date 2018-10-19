@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>雪花飘落</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            /* scale(n) 按比例n放大或者缩小 */
+            /* transform: scale(0.5); */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- 
+            1.雪花的大小不一致，即随机大小
+            2.下落轨迹是斜向下的，即改变坐标值---定位
+            3.循环下降的，雪花是无尽的
+            4.雪花的位置是随机的
+         -->
+        <!-- <img src="flake.png" alt="雪花"> -->
+
+    </div>
+</body>
+<script>
+    //描述一朵雪花降落
+    function show() {
+        //通过文档创建img标签
+        var imgBox = document.createElement("img");
+
+        //设置标签属性src
+        imgBox.src = "flake.png";
+
+        //在文档的body中追加子元素
+        document.body.appendChild(imgBox);
+
+        //获取浏览器宽高
+        var liuWidth = document.documentElement.clientWidth;
+        // alert(liuwidth);
+        var liuHeight = document.documentElement.clientHeight;
+        // alert(liuhight);
+
+        //1.随机位置出现雪花
+
+        //定义随机位置范围
+        //Math.random()*1   获取[0,1）的随机小数；
+        //Math.random()*n   获取[0,n）的随机小数；
+        var zuo = Math.random() * liuWidth;
+        var up = Math.random() * liuHeight;
+
+        var num = Math.random() * 0.45;
+        //出现雪花
+        imgBox.style.left = zuo + "px";
+        imgBox.style.top = up + "px";
+
+        imgBox.style.transform = "scale(" + num + ")";
+        //一片雪花的降落轨迹 每隔多久斜向下挪动一次
+        function jiang() {
+            zuo = zuo + 10;
+            up = up + 5;
+
+            if (zuo > liuWidth) {
+                zuo = -100;
+            }
+            if (up > liuHeight) {
+                up = -100;
+            }
+            imgBox.style.left = zuo + "px";
+            imgBox.style.top = up + "px";
+        }
+        // jiang();
+        //每隔100ms运行fuction中的代码
+        setInterval(jiang, 100);
+
+    }
+    // show();
+    // show();
+    // show();
+    var i = 0;
+    for (; i < 50;) {
+        show();
+        i++;
+    }
+</script>
+
+</html>
